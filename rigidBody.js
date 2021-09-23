@@ -13,7 +13,7 @@ update(){
     let t = (millis()-this.lastUpdate)/1000
     
     //Sum of forces
-    this.f = p5.Vector.add(createVector(0, g.value()/100*this.m))
+    this.f = createVector(0, g.value()/100*this.m)
     if(mouseIsPressed && mouseY < boxHeight){
       let attraction = createVector(mouseX-this.p.x, mouseY-this.p.y)
       attraction.setMag(attractionForce)
