@@ -97,7 +97,7 @@ function solveCollision(body1, body2){
   let m2 = body2.m
   
   //Normal vector
-  let normal = createVector(body1.p.x-body2.p.x, body1.p.y-body2.p.y)
+  let normal = p5.Vector.sub(body1.p, body2.p)
   normal.normalize()
 
   //Tangent vector
