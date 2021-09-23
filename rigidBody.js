@@ -32,3 +32,17 @@ update(){
     strokeWeight(this.radius*2)
     point(this.p.x, this.p.y)
     
+    strokeWeight(1)
+    
+    if(showVel.checked()){
+      stroke(3, 240, 252)
+      line(this.p.x, this.p.y, this.p.x+this.v.x, this.p.y+this.v.y)
+    }
+    if(showAcc.checked()){
+      stroke(0, 255, 110)
+      line(this.p.x, this.p.y, this.p.x+this.a.x, this.p.y+this.a.y)
+    }
+    
+    stroke(255)
+  }
+}
