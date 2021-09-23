@@ -6,6 +6,8 @@ let attractionForce = 100000
 let numberOfBodies
 let g
 let cor
+let showVel
+let showAcc
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -25,6 +27,8 @@ function setup() {
   })
   g = newSlider(0, 10000, 981, 55, boxHeight+12)
   cor = newSlider(0, 20, 6, 55, boxHeight+23)
+  showVel = newCheckbox(width-25, boxHeight+3)
+  showAcc = newCheckbox(width-25, boxHeight+15)
   
   for(let i = 0; i<30; i++){
     addBody()
@@ -33,12 +37,18 @@ function setup() {
 
 function draw() {
   background(0);
-  fill(255)
   stroke(255)
   textAlign(LEFT, TOP)
   textSize(12)
   strokeWeight(0)
-  text(windowWidth+"x"+boxHeight+" meters", width-95, height-20)
+  
+  //Show checkboxes
+  fill(3, 240, 252)
+  text("Show velocity", width-100, boxHeight+7)
+  fill(0, 255, 110)
+  text("Show acceleration", width-125, boxHeight+19)
+  
+  fill(255)
   
   //Show sliders
   text("# bodies", 5, boxHeight+5)
@@ -47,6 +57,8 @@ function draw() {
   text(g.value()/100, 190, boxHeight+15)
   text("COR", 5, boxHeight+25)
   text(cor.value()/10, 190, boxHeight+25)
+  
+  text(windowWidth+"x"+boxHeight+" meters", width/2, height-15)
   
   //Show attraction force
   if(mouseIsPressed && mouseY < boxHeight){
@@ -97,7 +109,7 @@ function solveCollision(body1, body2){
   let m2 = body2.m
   
   //Normal vector
-  let normal = p5.Vector.sub(body1.p, body2.p)
+  let normal = createVector(body1.p.x-body2.p.x, body1.p.y-body2.p.y)
   normal.normalize()
 
   //Tangent vector
@@ -125,7 +137,7 @@ function solveCollision(body1, body2){
 
 function addBody(){
   let m = random(300, 1000)
-  let p0 = createVector(random(0, width), random(0, boxHeight))
+  let p0 = createVector(random(0, width), random(0, height))
   let v0 = createVector(random(-100, 100), random(-100, 100))
   bodies.push(new RigidBody(m, p0, v0))
 }
@@ -134,6 +146,12 @@ function newSlider(min, max, def, x, y){
   let s = createSlider(min, max, def)
   s.position(x, y)
   return s
+}
+
+function newCheckbox(x, y){
+  let c = createCheckbox()
+  c.position(x, y)
+  return c
 }
 
 function mouseWheel(e){
