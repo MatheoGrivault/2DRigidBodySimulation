@@ -125,7 +125,7 @@ function solveCollision(body1, body2){
 
 function addBody(){
   let m = random(300, 1000)
-  let p0 = createVector(random(0, width), random(0, height))
+  let p0 = createVector(random(0, width), random(0, boxHeight))
   let v0 = createVector(random(-100, 100), random(-100, 100))
   bodies.push(new RigidBody(m, p0, v0))
 }
