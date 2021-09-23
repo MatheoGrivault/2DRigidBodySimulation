@@ -1,5 +1,5 @@
 
-let boxHeight = 560
+let boxHeight
 let bodies = []
 let attractionForce = 100000
 
@@ -8,7 +8,8 @@ let g
 let cor
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(windowWidth, windowHeight);
+  boxHeight = windowHeight-40
   numberOfBodies = newSlider(1, 100, 30, 55, boxHeight+1)
   numberOfBodies.input(function(){
     let delta = numberOfBodies.value()-bodies.length
@@ -37,7 +38,7 @@ function draw() {
   textAlign(LEFT, TOP)
   textSize(12)
   strokeWeight(0)
-  text("600x600 meters", width-95, height-20)
+  text(windowWidth+"x"+boxHeight+" meters", width-95, height-20)
   
   //Show sliders
   text("# bodies", 5, boxHeight+5)
