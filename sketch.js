@@ -155,5 +155,5 @@ function newCheckbox(x, y){
 }
 
 function mouseWheel(e){
-  attractionForce -= e.delta*2
+  attractionForce -= e.delta*4
 }
